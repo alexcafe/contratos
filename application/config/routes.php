@@ -8,3 +8,5 @@ $route['translate_uri_dashes'] = FALSE;
 $route['login'] = 'auth/login';
 $route['alterar_senha'] = 'auth/change_password';
 $route['recuperar_senha'] = 'auth/forgot_password';
+
+$route['principal'] = 'dashboard/index';

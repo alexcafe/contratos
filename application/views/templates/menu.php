@@ -1,4 +1,4 @@
-<body>
+<body style="background-color: #f2f7ff;">
     <div id="app">
         <div id="sidebar" class="active">
             <div class="sidebar-wrapper active">
@@ -182,11 +182,15 @@
                                 <span>Table</span>
                             </a>
                         </li>
+                        <hr/>
 
-                        
+                        <li class="sidebar-title"><a href="<?php echo base_url(); ?>auth/logout">Logout</a></li>
+
+
 
                     </ul>
                 </div>
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
+
         </div>
