@@ -5,7 +5,7 @@
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
                     <div class="auth-logo">
-                        <a href="index.html"><img src="assets/images/logo/rqh.png" alt="Logo"></a>
+                        <a href="index.html"><img src="<?php echo base_url(); ?>assets/images/logo/rqh.png" alt="Logo"></a>
                     </div>
                     <h1 class="auth-title"><?php echo lang('forgot_password_heading');?></h1>
                     <p class="auth-subtitle mb-5">Insira seu e-mail e enviaremos o link de redefinição de senha.</p>

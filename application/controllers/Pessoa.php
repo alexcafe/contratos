@@ -1,11 +1,11 @@
 <?php
-class Dashboard extends CI_Controller
+class Pessoa extends CI_Controller
 {
 
   public function __construct()
   {
     parent::__construct();
-    //$this->load->model(['ion_auth_model']);
+    $this->load->model(['pessoa_model']);
     $this->load->database();
     $this->load->helper('url', 'form');
     $this->load->library(['ion_auth', 'form_validation']);
@@ -20,9 +20,11 @@ class Dashboard extends CI_Controller
   {
     if ($this->ion_auth->logged_in())
     {
+      $pessoas = $this->pessoa_model->get_pessoa();
+      $data['pessoas'] = $pessoas;
       $this->load->view('templates/top');
 			$this->load->view('templates/menu');
-			$this->load->view('usr/dashboard');
+			$this->load->view('pessoa/lista_pessoas', $data);
     }
     else
     {

@@ -14,4 +14,5 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/app.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/pages/auth.css">
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/images/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="assets/vendors/simple-datatables/style.css">
 </head>
