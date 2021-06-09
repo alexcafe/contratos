@@ -7,7 +7,7 @@ class Pessoa extends CI_Controller
     parent::__construct();
     $this->load->model(['pessoa_model']);
     $this->load->database();
-    $this->load->helper('url', 'form');
+    $this->load->helper('url', 'form','url_helper');
     $this->load->library(['ion_auth', 'form_validation']);
 
     if ($this->ion_auth->logged_in())
@@ -25,6 +25,38 @@ class Pessoa extends CI_Controller
       $this->load->view('templates/top');
 			$this->load->view('templates/menu');
 			$this->load->view('pessoa/lista_pessoas', $data);
+    }
+    else
+    {
+      $this->session->set_flashdata('message', 'Acesso negado.');
+      redirect("login", 'refresh');
+    }
+  }
+
+  public function create_pessoa()
+  {
+    if ($this->ion_auth->logged_in())
+    {
+      $this->form_validation->set_rules('nome', 'Nome', 'required');
+      // $this->form_validation->set_rules('titulo', 'Título do Curso', 'required|max_length[512]');
+      // $this->form_validation->set_rules('data_fim', 'Data Final', 'callback_validar_data');
+      if ( ! $this->form_validation->run())
+      {
+        // $data = $this->security->xss_clean($data);
+        $this->load->view('templates/top');
+			  $this->load->view('templates/menu');
+			  $this->load->view('pessoa/create_pessoa');
+      }
+      else
+      {
+        $data = $this->input->post();
+        //var_dump($data);die();
+        
+        $this->pessoa_model->set_pessoa('create');
+        $this->session->set_flashdata('message_success_pessoa', 'Pessoa Cadastrada Com Sucesso.');
+        redirect('/pessoas');
+      }
+
     }
     else
     {

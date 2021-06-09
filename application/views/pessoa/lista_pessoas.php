@@ -51,7 +51,11 @@
                                   <?php endforeach;?>
                                 </tbody>
                             </table>
+                            <div class="buttons" style="float:right;">
+                                <a href="<?php echo base_url(); ?>pessoas/novo" class="btn btn-primary">Novo Cadastro</a>
+                            </div>
                         </div>
+                        
                     </div>
 
                 </section>

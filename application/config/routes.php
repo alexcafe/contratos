@@ -11,3 +11,4 @@ $route['recuperar_senha'] = 'auth/forgot_password';
 
 $route['principal'] = 'dashboard/index';
 $route['pessoas'] = 'pessoa/index'; //Controller/Função
+$route['pessoas/novo'] = 'pessoa/create_pessoa';
