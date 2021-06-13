@@ -36,9 +36,16 @@ function onlynumber(evt) {
 }
 
 
-//Máscaras para cep e telefone
+
 $(document).ready(function() {
+  //Máscaras para cep e telefone
   $(".mask-cep").mask("99999-999");
   $(".mask-telefone").mask("(99) 9999-9999");
   
+  //Exibe erro de form_validation para campo de cpf/cnpj
+  var in_fj = $('.fj p').text();
+  if(in_fj == 'CPF/CNPJ já cadastrado!')
+  {
+    $('#cpf_cnpj').addClass('is-invalid');
+  }
 });

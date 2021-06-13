@@ -67,4 +67,20 @@ class Pessoa_model extends CI_Model {
     
   }
 
+  public function have_cpf_cnpj($cpf_cnpj)
+  {
+    $this->db->select('count(*) as linhas')
+    ->from('pessoa')
+    ->where('cpf_cnpj',$cpf_cnpj);
+    $query = $this->db->get();
+    if ($query->row()->linhas == 0)
+    $return = false;
+    else
+    {
+      $return = true;
+    }
+    //echo var_dump($this->db->last_query());
+    return $return;
+  }
+
 }

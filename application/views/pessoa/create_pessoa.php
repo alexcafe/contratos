@@ -39,7 +39,7 @@
                           <div class="row">
                               <div class="col-12 form-group">
                                   <label class="form-label" for="name">Nome</label>
-                                  <input type="text" id="nome" class="form-control" maxlength="400" name="nome" placeholder="Digite o nome da pessoa..." value="" required>
+                                  <input type="text" id="nome" class="form-control" maxlength="400" name="nome" placeholder="Digite o nome da pessoa..." value="<?php echo set_value('nome'); ?>" required>
                                   <div class="invalid-feedback">
                                       <i class="bx bx-radio-circle"></i>
                                       Por favor, preencha o campo nome.
@@ -51,15 +51,16 @@
                               </div>
                               <div class="col-sm-4 form-group">
                                   <label class="form-label" for="cpf_cnpj">CPF/CNPJ</label>
-                                  <input type="text" id="cpf_cnpj" class="form-control" name="cpf_cnpj" placeholder="Digite o CPF ou CNPJ da pessoa..." value="" required>
-                                  <div class="invalid-feedback">
+                                  <input type="text" id="cpf_cnpj" class="form-control" name="cpf_cnpj" placeholder="Digite o CPF ou CNPJ da pessoa..." value="<?php echo set_value('cpf_cnpj'); ?>" required>
+                                  <div class="invalid-feedback fj">
                                       <i class="bx bx-radio-circle"></i>
-                                      Por favor, preencha o campo CPF/CNPJ.
+                                      <?php echo form_error('cpf_cnpj') ? form_error('cpf_cnpj') : 'Por favor, preencha o campo CPF/CNPJ.';?>
                                   </div>
+                                  <?php //echo form_error('cpf_cnpj', '<div class="invalid-feedback"><i class="bx bx-radio-circle"></i>', '/div>'); ?>
                               </div>
                               <div class="col-sm-4 form-group">
                                   <label class="form-label" for="ie">Inscrição Estadual</label>
-                                  <input type="text" id="ie" class="form-control" name="ie" maxlength="20" placeholder="Digite a Inscrição Estadual..." value="">
+                                  <input type="text" id="ie" class="form-control" name="ie" maxlength="20" placeholder="Digite a Inscrição Estadual..." value="<?php echo set_value('ie'); ?>">
                                   <div class="invalid-feedback">
                                       <i class="bx bx-radio-circle"></i>
                                       Por favor, preencha o campo Inscrição Estadual.
@@ -70,8 +71,8 @@
                                   <fieldset class="form-group">
                                       <select class="form-select js-choice" required id="tipo_pessoa" name="tipo_pessoa">
                                           <option value="">Física ou Jurídica</option>
-                                          <option value="f">Física</option>
-                                          <option value="j">Jurídica</option>
+                                          <option value="f" <?php echo set_select('tipo_pessoa', 'f');?>>Física</option>
+                                          <option value="j" <?php echo set_select('tipo_pessoa', 'j');?>>Jurídica</option>
                                       </select>
                                   </fieldset>
                                   <div class="invalid-feedback">
@@ -87,7 +88,7 @@
                           <div class="row">
                             <div class="col-sm-10 form-group">
                                 <label class="form-label" for="logradouro">Logradouro</label>
-                                <input type="text" id="logradouro" class="form-control" name="logradouro" placeholder="Digite o Logradouro..." value="" required>
+                                <input type="text" id="logradouro" class="form-control" name="logradouro" placeholder="Digite o Logradouro..." value="<?php echo set_value('logradouro'); ?>" required>
                                 <div class="invalid-feedback">
                                     <i class="bx bx-radio-circle"></i>
                                     Por favor, preencha o campo Logradouro.
@@ -95,7 +96,7 @@
                             </div>
                             <div class="col-sm-2 form-group">
                                 <label class="form-label" for="numero">Número</label>
-                                <input type="text" id="numero" class="form-control" name="numero" maxlength="7" placeholder="Digite o Número..." onkeypress="return onlynumber();" value="" required>
+                                <input type="text" id="numero" class="form-control" name="numero" maxlength="7" placeholder="Digite o Número..." onkeypress="return onlynumber();" value="<?php echo set_value('numero'); ?>" required>
                                 <div class="invalid-feedback">
                                     <i class="bx bx-radio-circle"></i>
                                     Por favor, preencha o campo Número.
@@ -105,7 +106,7 @@
                           <div class="row">
                             <div class="col-sm-5 form-group">
                                 <label class="form-label" for="complemento">Complemento</label>
-                                <input type="text" id="complemento" maxlength="100" class="form-control" name="complemento" placeholder="Digite o Complemento..." value="">
+                                <input type="text" id="complemento" maxlength="100" class="form-control" name="complemento" placeholder="Digite o Complemento..." value="<?php echo set_value('complemento'); ?>">
                                 <div class="invalid-feedback">
                                     <i class="bx bx-radio-circle"></i>
                                     Por favor, preencha o campo Complemento.
@@ -113,7 +114,7 @@
                             </div>
                             <div class="col-sm-5 form-group">
                                 <label class="form-label" for="bairro">Bairro</label>
-                                <input type="text" id="bairro" maxlength="100" class="form-control" name="bairro" placeholder="Digite o Bairro..." value="" required>
+                                <input type="text" id="bairro" maxlength="100" class="form-control" name="bairro" placeholder="Digite o Bairro..." value="<?php echo set_value('bairro'); ?>" required>
                                 <div class="invalid-feedback">
                                     <i class="bx bx-radio-circle"></i>
                                     Por favor, preencha o campo Bairro.
@@ -121,7 +122,7 @@
                             </div>
                             <div class="col-sm-2 form-group">
                                 <label class="form-label" for="cep">CEP</label>
-                                <input type="text" id="cep" class="form-control mask-cep" name="cep" placeholder="Digite o CEP..." value="" required>
+                                <input type="text" id="cep" class="form-control mask-cep" name="cep" placeholder="Digite o CEP..." value="<?php echo set_value('cep'); ?>" required>
                                 <div class="invalid-feedback">
                                     <i class="bx bx-radio-circle"></i>
                                     Por favor, preencha o campo CEP.
@@ -131,7 +132,7 @@
                           <div class="row">
                             <div class="col-sm-7 form-group">
                                 <label class="form-label" for="cidade">Cidade</label>
-                                <input type="text" id="cidade" maxlength="200" class="form-control" name="cidade" placeholder="Digite a Cidade..." value="" required>
+                                <input type="text" id="cidade" maxlength="200" class="form-control" name="cidade" placeholder="Digite a Cidade..." value="<?php echo set_value('cidade'); ?>" required>
                                 <div class="invalid-feedback">
                                     <i class="bx bx-radio-circle"></i>
                                     Por favor, preencha o campo Cidade.
@@ -142,33 +143,33 @@
                                   <fieldset class="form-group">
                                       <select class="form-select js-choice" required id="estado" name="estado">
                                       <option value="">Selecione um Estado</option>
-                                      <option value="AC">Acre</option>
-                                      <option value="AL">Alagoas</option>
-                                      <option value="AP">Amapá</option>
-                                      <option value="AM">Amazonas</option>
-                                      <option value="BA">Bahia</option>
-                                      <option value="CE">Ceará</option>
-                                      <option value="DF">Distrito Federal</option>
-                                      <option value="ES">Espírito Santo</option>
-                                      <option value="GO">Goiás</option>
-                                      <option value="MA">Maranhão</option>
-                                      <option value="MT">Mato Grosso</option>
-                                      <option value="MS">Mato Grosso do Sul</option>
-                                      <option value="MG">Minas Gerais</option>
-                                      <option value="PA">Pará</option>
-                                      <option value="PB">Paraíba</option>
-                                      <option value="PR">Paraná</option>
-                                      <option value="PE">Pernambuco</option>
-                                      <option value="PI">Piauí</option>
-                                      <option value="RJ">Rio de Janeiro</option>
-                                      <option value="RN">Rio Grande do Norte</option>
-                                      <option value="RS">Rio Grande do Sul</option>
-                                      <option value="RO">Rondônia</option>
-                                      <option value="RR">Roraima</option>
-                                      <option value="SC">Santa Catarina</option>
-                                      <option value="SP">São Paulo</option>
-                                      <option value="SE">Sergipe</option>
-                                      <option value="TO">Tocantins</option>
+                                      <option value="AC" <?php echo set_select('estado', 'AC');?>>Acre</option>
+                                      <option value="AL" <?php echo set_select('estado', 'AL');?>>Alagoas</option>
+                                      <option value="AP" <?php echo set_select('estado', 'AP');?>>Amapá</option>
+                                      <option value="AM" <?php echo set_select('estado', 'AM');?>>Amazonas</option>
+                                      <option value="BA" <?php echo set_select('estado', 'BA');?>>Bahia</option>
+                                      <option value="CE" <?php echo set_select('estado', 'CE');?>>Ceará</option>
+                                      <option value="DF" <?php echo set_select('estado', 'DF');?>>Distrito Federal</option>
+                                      <option value="ES" <?php echo set_select('estado', 'ES');?>>Espírito Santo</option>
+                                      <option value="GO" <?php echo set_select('estado', 'GO');?>>Goiás</option>
+                                      <option value="MA" <?php echo set_select('estado', 'MA');?>>Maranhão</option>
+                                      <option value="MT" <?php echo set_select('estado', 'MT');?>>Mato Grosso</option>
+                                      <option value="MS" <?php echo set_select('estado', 'MS');?>>Mato Grosso do Sul</option>
+                                      <option value="MG" <?php echo set_select('estado', 'MG');?>>Minas Gerais</option>
+                                      <option value="PA" <?php echo set_select('estado', 'PA');?>>Pará</option>
+                                      <option value="PB" <?php echo set_select('estado', 'PB');?>>Paraíba</option>
+                                      <option value="PR" <?php echo set_select('estado', 'PR');?>>Paraná</option>
+                                      <option value="PE" <?php echo set_select('estado', 'PE');?>>Pernambuco</option>
+                                      <option value="PI" <?php echo set_select('estado', 'PI');?>>Piauí</option>
+                                      <option value="RJ" <?php echo set_select('estado', 'RJ');?>>Rio de Janeiro</option>
+                                      <option value="RN" <?php echo set_select('estado', 'RN');?>>Rio Grande do Norte</option>
+                                      <option value="RS" <?php echo set_select('estado', 'RS');?>>Rio Grande do Sul</option>
+                                      <option value="RO" <?php echo set_select('estado', 'RO');?>>Rondônia</option>
+                                      <option value="RR" <?php echo set_select('estado', 'RR');?>>Roraima</option>
+                                      <option value="SC" <?php echo set_select('estado', 'SC');?>>Santa Catarina</option>
+                                      <option value="SP" <?php echo set_select('estado', 'SP');?>>São Paulo</option>
+                                      <option value="SE" <?php echo set_select('estado', 'SE');?>>Sergipe</option>
+                                      <option value="TO" <?php echo set_select('estado', 'TO');?>>Tocantins</option>
                                       </select>
                                   </fieldset>
                                   <div class="invalid-feedback">
@@ -183,7 +184,7 @@
                           <div class="row">
                             <div class="col-sm-3 form-group">
                                 <label class="form-label" for="telefone">Telefone</label>
-                                <input type="text" id="telefone" class="form-control mask-telefone" name="telefone" placeholder="Digite o Telefone..." value="">
+                                <input type="text" id="telefone" class="form-control mask-telefone" name="telefone" placeholder="Digite o Telefone..." value="<?php echo set_value('telefone'); ?>">
                                 <div class="invalid-feedback">
                                     <i class="bx bx-radio-circle"></i>
                                     Por favor, preencha o campo Telefone.
@@ -191,7 +192,7 @@
                             </div>
                             <div class="col-sm-3 form-group">
                                 <label class="form-label" for="celular">Celular</label>
-                                <input type="text" id="celular" class="form-control mask-celular" name="celular" placeholder="Digite o Celular..." value="" required>
+                                <input type="text" id="celular" class="form-control mask-celular" name="celular" placeholder="Digite o Celular..." value="<?php echo set_value('celular'); ?>" required>
                                 <div class="invalid-feedback">
                                     <i class="bx bx-radio-circle"></i>
                                     Por favor, preencha o campo Celular.
@@ -199,7 +200,7 @@
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label class="form-label" for="email">Email</label>
-                                <input type="text" id="email" class="form-control" name="email" placeholder="Digite o Email..." value="" required>
+                                <input type="text" id="email" class="form-control" name="email" maxlength="200" placeholder="Digite o Email..." value="<?php echo set_value('email'); ?>" required>
                                 <div class="invalid-feedback">
                                     <i class="bx bx-radio-circle"></i>
                                     Por favor, preencha o campo Email.
@@ -209,7 +210,7 @@
                           <div class="row">
                             <div class="col-sm-12 form-group">
                                 <label class="form-label" for="responsavel">Responsável</label>
-                                <input type="text" id="responsavel" class="form-control" maxlength="400" name="responsavel" placeholder="Digite o nome do Responsável..." value="">
+                                <input type="text" id="responsavel" class="form-control" maxlength="400" name="responsavel" placeholder="Digite o nome do Responsável..." value="<?php echo set_value('responsavel'); ?>">
                                 <div class="invalid-feedback">
                                     <i class="bx bx-radio-circle"></i>
                                     Por favor, preencha o campo Responsável.
@@ -251,7 +252,7 @@
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
   <script src="<?php echo base_url(); ?>assets/mask/jquery.mask.js"></script>
   <script src="<?php echo base_url(); ?>assets/mask/jquery.mask.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/js/scripts.js"></script>
+  <script src="<?php echo base_url(); ?>assets/js/scripts_pessoa.js"></script>
   <script>
     // $(document).ready(function(){
 

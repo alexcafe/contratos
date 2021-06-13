@@ -5,7 +5,7 @@ class Pessoa extends CI_Controller
   public function __construct()
   {
     parent::__construct();
-    $this->load->model(['pessoa_model']);
+    $this->load->model(['pessoa_model','funcoes']);
     $this->load->database();
     $this->load->helper('url', 'form','url_helper');
     $this->load->library(['ion_auth', 'form_validation']);
@@ -37,7 +37,7 @@ class Pessoa extends CI_Controller
   {
     if ($this->ion_auth->logged_in())
     {
-      $this->form_validation->set_rules('nome', 'Nome', 'required');
+      $this->form_validation->set_rules('cpf_cnpj', 'CPF/CNPJ', 'callback_validar_cpf_cnpj');
       // $this->form_validation->set_rules('titulo', 'Título do Curso', 'required|max_length[512]');
       // $this->form_validation->set_rules('data_fim', 'Data Final', 'callback_validar_data');
       if ( ! $this->form_validation->run())
@@ -63,6 +63,24 @@ class Pessoa extends CI_Controller
       $this->session->set_flashdata('message', 'Acesso negado.');
       redirect("login", 'refresh');
     }
+  }
+
+  function validar_cpf_cnpj()
+  {
+    $cpf_cpnj = NULL;
+    $cpf_cnpj = $this->funcoes->limpa_numero($this->input->post('cpf_cnpj'));
+    // var_dump($cpf_cnpj);die();
+    if($this->pessoa_model->have_cpf_cnpj($cpf_cnpj))
+    {
+      $this->form_validation->set_message('validar_cpf_cnpj', 'CPF/CNPJ já cadastrado!');
+      $return = FALSE;
+    }
+    else
+    {
+      $return = TRUE;
+    }
+    return $return;
+
   }
 
 
