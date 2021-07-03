@@ -5,7 +5,8 @@
                 <div class="sidebar-header">
                     <div class="d-flex justify-content-between">
                         <div class="logo">
-                            <a href="#"><img src="<?php echo base_url(); ?>assets/images/logo/logo.png" alt="Logo" srcset=""></a>
+                            <!-- <a href="#"><img src="<?php echo base_url(); ?>assets/images/logo/logo.png" alt="Logo" srcset=""></a> -->
+                            <h1>SIGECO</h1>
                         </div>
                         <div class="toggler">
                             <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -16,8 +17,8 @@
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
 
-                        <li class="sidebar-item <?php echo $this->uri->segment(1)=='dashboard' ? 'active' : ''; ?>"">
-                            <a href="<?php echo base_url(); ?>dashboard" class='sidebar-link <?php echo $this->uri->segment(2)=='dashboard' ? 'active' : ''; ?>'>
+                        <li class="sidebar-item <?php echo $this->uri->segment(1)=='principal' ? 'active' : ''; ?>"">
+                            <a href="<?php echo base_url(); ?>principal" class='sidebar-link <?php echo $this->uri->segment(2)=='principal' ? 'active' : ''; ?>'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Dashboard</span>
                             </a>

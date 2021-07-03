@@ -8,6 +8,12 @@
             <div class="page-heading">
                 <div class="page-title">
                     <div class="row">
+                        <?php if($this->session->flashdata('message_success_pessoa')): ?>
+                            <div class="alert alert-success alert-dismissible show fade"><?php echo $this->session->flashdata('message_success_pessoa'); ?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        <?php endif;?>
                         <div class="col-12 col-md-6 order-md-1 order-last">
                             <h3>Gerenciamento de Pessoas</h3>
                             <p class="text-subtitle text-muted">Relação das Pessoas (Físicas e Jurídicas) Cadastradas</p>
@@ -15,8 +21,8 @@
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">DataTable</li>
+                                    <li class="breadcrumb-item"><a href="<?php echo site_url();?>">Dashboard</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Pessoas</li>
                                 </ol>
                             </nav>
                         </div>
@@ -25,7 +31,6 @@
                 <section class="section">
                     <div class="card">
                         <div class="card-header">
-                            Pessoas
                         </div>
                         <div class="card-body">
                             <table class="table table-striped" id="table1">
@@ -44,7 +49,15 @@
                                         <td><?php echo $pessoa->tipo_pessoa ?></td>
                                         <td><?php echo $pessoa->cpf_cnpj ?></td>
                                         <td>
-                                            <span class="badge bg-success">Active</span>
+                                            <a type="button" href="<?php echo site_url('/pessoas/visualizar/'. $pessoa->id);?>">
+                                                <span class="badge bg-primary">Visualizar</span>
+                                            </a>
+                                            <a type="button" href="<?php echo site_url('/pessoas/editar/'. $pessoa->id);?>">
+                                                <span class="badge bg-warning">Editar</span>
+                                            </a>
+                                            <a data-bs-toggle="modal" data-bs-target="#danger" type="button" data-bs-whatever="<?php echo site_url('/pessoas/excluir/'. $pessoa->id);?>">
+                                                <span class="badge bg-danger">Excluir</span>
+                                            </a>
                                         </td>
                                     </tr>
 
@@ -61,14 +74,48 @@
                 </section>
             </div>
 
+            <!--Danger theme Modal -->
+            <div class="modal fade text-left" id="danger" tabindex="-1"
+                role="dialog" aria-labelledby="myModalLabel120"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                    role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-danger">
+                            <h5 class="modal-title white" id="myModalLabel120">
+                                Excluir Pessoa
+                            </h5>
+                            <button type="button" class="close"
+                                data-bs-dismiss="modal" aria-label="Close">
+                                <i data-feather="x"></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Tem certeza que deseja excluir este registro?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"
+                                class="btn btn-light-secondary"
+                                data-bs-dismiss="modal">
+                                <i class="bx bx-x d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Não</span>
+                            </button>
+                            <a id='deletar-modal' href='' type="button" class="btn btn-danger ml-1">
+                                <i class="bx bx-check d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Sim</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <footer>
                 <div class="footer clearfix mb-0 text-muted">
                     <div class="float-start">
-                        <p>2021 &copy; Mazer</p>
+                        <p>2021 &copy; RQH Soluções</p>
                     </div>
                     <div class="float-end">
-                        <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
-                                href="http://ahmadsaugi.com">A. Saugi</a></p>
+                        <p>Sistema de Gestão de Contratos</p>
                     </div>
                 </div>
             </footer>
@@ -79,10 +126,23 @@
 
     <script src="<?php echo base_url(); ?>assets/vendors/simple-datatables/simple-datatables.js"></script>
     <script>
+      //Construtor de Data Tables
       const dataTable = new simpleDatatables.DataTable("#table1", {
         searchable: true,
         
       })
+    </script>
+    <script>
+        //Ação da modal que recebe o endereço de link para conclusão de exclusão
+        var modaldanger = document.getElementById('danger')
+        modaldanger.addEventListener('show.bs.modal', function (event) {
+            // Button that triggered the modal
+            var button = event.relatedTarget
+            // Extract info from data-bs-* attributes
+            var recipient = button.getAttribute('data-bs-whatever')
+            sim_modal=document.getElementById("deletar-modal")
+            sim_modal.href=recipient
+        })
     </script>
 
     <script src="<?php echo base_url(); ?>assets/js/main.js"></script>

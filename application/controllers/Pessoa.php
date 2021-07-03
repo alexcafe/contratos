@@ -22,6 +22,14 @@ class Pessoa extends CI_Controller
     {
       $pessoas = $this->pessoa_model->get_pessoa();
       $data['pessoas'] = $pessoas;
+
+      //Laço para inserir máscara de cpf e cnpj
+      $i = 0;
+      foreach ($pessoas as $key => $p) {
+        $data['pessoas'][$i]->cpf_cnpj = $this->funcoes->mascara_cpf_cnpj($p->cpf_cnpj );
+        $i++;
+      }
+
       $this->load->view('templates/top');
 			$this->load->view('templates/menu');
 			$this->load->view('pessoa/lista_pessoas', $data);
@@ -38,8 +46,6 @@ class Pessoa extends CI_Controller
     if ($this->ion_auth->logged_in())
     {
       $this->form_validation->set_rules('cpf_cnpj', 'CPF/CNPJ', 'callback_validar_cpf_cnpj');
-      // $this->form_validation->set_rules('titulo', 'Título do Curso', 'required|max_length[512]');
-      // $this->form_validation->set_rules('data_fim', 'Data Final', 'callback_validar_data');
       if ( ! $this->form_validation->run())
       {
         // $data = $this->security->xss_clean($data);
@@ -49,7 +55,7 @@ class Pessoa extends CI_Controller
       }
       else
       {
-        $data = $this->input->post();
+        //$data = $this->input->post();
         //var_dump($data);die();
         
         $this->pessoa_model->set_pessoa('create');
@@ -81,6 +87,85 @@ class Pessoa extends CI_Controller
     }
     return $return;
 
+  }
+
+  function delete_pessoa($pessoa_id)
+  {
+    if ($this->ion_auth->logged_in())
+    {
+      $this->pessoa_model->delete_pessoa($pessoa_id);
+      $this->session->set_flashdata('message_success_pessoa', 'Pessoa Excluída Com Sucesso.');
+      redirect('/pessoas');
+    }
+    else
+    {
+      $this->session->set_flashdata('message', 'Acesso negado.');
+      redirect("login", 'refresh');
+    }
+  }
+
+  public function visualizar_pessoa($pessoa_id)
+  {
+    if ($this->ion_auth->logged_in())
+    {
+      //Inserção de máscaras em campos específicos para exibição ao usuário
+      $details_pessoa = $this->pessoa_model->get_pessoa($pessoa_id);
+      $details_pessoa[0]->cpf_cnpj = $this->funcoes->mascara_cpf_cnpj($details_pessoa[0]->cpf_cnpj );
+      $details_pessoa[0]->telefone = $details_pessoa[0]->telefone ? $this->funcoes->mascara_tel($details_pessoa[0]->telefone) : NULL;
+      $details_pessoa[0]->celular = $this->funcoes->mascara_cel($details_pessoa[0]->celular);
+      $details_pessoa[0]->cep = $this->funcoes->mascara_cep($details_pessoa[0]->cep);
+
+      $data['pessoa'] = $details_pessoa[0];
+      $this->load->view('templates/top');
+			$this->load->view('templates/menu');
+			$this->load->view('pessoa/view_pessoa',$data);
+
+    }
+    else
+    {
+      $this->session->set_flashdata('message', 'Acesso negado.');
+      redirect("login", 'refresh');
+    }
+  }
+
+  public function editar_pessoa($pessoa_id)
+  {
+    if ($this->ion_auth->logged_in())
+    {
+      //Inserção de máscaras em campos específicos para exibição ao usuário
+      $details_pessoa = $this->pessoa_model->get_pessoa($pessoa_id);
+      $details_pessoa[0]->cpf_cnpj = $this->funcoes->mascara_cpf_cnpj($details_pessoa[0]->cpf_cnpj );
+      $details_pessoa[0]->telefone = $details_pessoa[0]->telefone ? $this->funcoes->mascara_tel($details_pessoa[0]->telefone) : NULL;
+      $details_pessoa[0]->celular = $this->funcoes->mascara_cel($details_pessoa[0]->celular);
+      $details_pessoa[0]->cep = $this->funcoes->mascara_cep($details_pessoa[0]->cep);
+      $details_pessoa[0]->tipo_pessoa = $details_pessoa[0]->tipo_pessoa == 'Pessoa Física' ? 'f' : 'j';
+
+      //var_dump($details_pessoa[0]->tipo_pessoa);die();
+      $data['pessoa'] = $details_pessoa[0];
+      $this->form_validation->set_rules('nome', 'Nome', 'required');
+      if ( ! $this->form_validation->run())
+      {
+        // $data = $this->security->xss_clean($data);
+      $this->load->view('templates/top');
+			$this->load->view('templates/menu');
+			$this->load->view('pessoa/edit_pessoa',$data);
+      }
+      else
+      {
+        //$data = $this->input->post();
+        //var_dump($data);die();
+        
+        $this->pessoa_model->set_pessoa('edit');
+        $this->session->set_flashdata('message_success_pessoa', 'Pessoa Atualizada Com Sucesso.');
+        redirect('/pessoas');
+      }
+
+    }
+    else
+    {
+      $this->session->set_flashdata('message', 'Acesso negado.');
+      redirect("login", 'refresh');
+    }
   }
 
 
