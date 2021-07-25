@@ -16,17 +16,64 @@ class Migration_contrato extends CI_Migration {
                 'unsigned'       => TRUE,
                 'auto_increment' => TRUE
             ),
-            'CAMPO_1' => array(
-                'type' => 'VARCHAR',
-                'constraint' => 100,
+            'tipo_contrato_id' => array(
+              'type' => 'INT',
+              'constraint' => 11,
+              'unsigned'       => TRUE,
             ),
-            'CAMPO_2' => array(
+            'escopo' => array(
                 'type' => 'VARCHAR',
-                'constraint' => 100,
+                'constraint' => 500,
+            ),
+            'formalizado' => array(
+                'type' => 'CHAR',
+                'constraint' => 1,
+                'comment' => '(S)im ou (N)ão'
+            ),
+            'situacao' => array(
+   				       'type'       => 'ENUM("Assinatura","Assinado","Vigente","Vencendo","Vencido","Informal")',
+            ),
+            'valor' => array(
+                'type' => 'DECIMAL',
+                'constraint' => '10,2',
+            ),
+            'forma_pagamento' => array(
+                'type' => 'CHAR',
+                'constraint' => 1,
+                'comment' => '(U)nico ou (M)ensal'
+            ),
+            'inicio_contrato' => array(
+                'type' => 'DATE',
+                'null'  => TRUE,
+            ),
+            'fim_contrato' => array(
+                'type' => 'DATE',
+                'null'  => TRUE,
+            ),
+            'contrato_anterior_id' => array(
+              'type' => 'INT',
+              'constraint' => 11,
+              'unsigned'       => TRUE,
+              'null'  => TRUE,
+            ),
+            'observacao' => array(
+                'type' => 'VARCHAR',
+                'constraint' => 20000,
+                'null'  => TRUE,
+            ),
+            'fiscal' => array(
+                'type' => 'VARCHAR',
+                'constraint' => 400,
+                'null'  => TRUE,
+            ),
+            'pessoa_id' => array(
+              'type' => 'INT',
+              'constraint' => 11,
+              'unsigned'       => TRUE,
             ),
             'dt_delete' => array(
-				'type'  => 'TIMESTAMP',
-                'null'  => TRUE    
+				        'type'  => 'TIMESTAMP',
+                'null'  => TRUE
             ),
             'deleted' => array(
                 'type' => 'BOOLEAN',

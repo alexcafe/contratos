@@ -16,17 +16,13 @@ class Migration_tipo_contrato extends CI_Migration {
                 'unsigned'       => TRUE,
                 'auto_increment' => TRUE
             ),
-            'CAMPO_1' => array(
-                'type' => 'VARCHAR',
-                'constraint' => 100,
-            ),
-            'CAMPO_2' => array(
+            'nome' => array(
                 'type' => 'VARCHAR',
                 'constraint' => 100,
             ),
             'dt_delete' => array(
-				'type'  => 'TIMESTAMP',
-                'null'  => TRUE    
+				        'type'  => 'TIMESTAMP',
+                'null'  => TRUE
             ),
             'deleted' => array(
                 'type' => 'BOOLEAN',
@@ -35,6 +31,16 @@ class Migration_tipo_contrato extends CI_Migration {
         ));
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('tipo_contrato');
+
+        $this->db->query ("INSERT INTO `tipo_contrato` (`nome`, `dt_delete`, `deleted`) VALUES
+        ('Projeto', NULL, 0),
+        ('Serviço', NULL, 0),
+        ('Cooperação', NULL, 0),
+        ('1ª Renovação', NULL, 0),
+        ('2ª Renovação', NULL, 0),
+        ('3ª Renovação', NULL, 0),
+        ('4ª Renovação', NULL, 0),
+        ('5ª Renovação', NULL, 0)");
     }
 
     public function down() {

@@ -30,6 +30,12 @@
                                 <span>Gerenciar Pessoas</span>
                             </a>
                         </li>
+                        <li class="sidebar-item <?php echo $this->uri->segment(1)=='contratos' ? 'active' : ''; ?>">
+                            <a href="<?php echo base_url(); ?>contratos" class="sidebar-link" >
+                                <i class="bi bi-people-fill"></i>
+                                <span>Gerenciar Contratos</span>
+                            </a>
+                        </li>
                         <hr/>
 
                         <li class="sidebar-title"><a href="<?php echo base_url(); ?>auth/logout">Logout</a></li>

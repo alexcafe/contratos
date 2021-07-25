@@ -10,8 +10,11 @@ $route['alterar_senha'] = 'auth/change_password';
 $route['recuperar_senha'] = 'auth/forgot_password';
 
 $route['principal'] = 'dashboard/index';
+
 $route['pessoas'] = 'pessoa/index'; //Controller/Função
 $route['pessoas/novo'] = 'pessoa/create_pessoa';
 $route['pessoas/excluir/(:num)'] = 'pessoa/delete_pessoa/$1';
 $route['pessoas/visualizar/(:num)'] = 'pessoa/visualizar_pessoa/$1';
 $route['pessoas/editar/(:num)'] = 'pessoa/editar_pessoa/$1';
+
+$route['contratos'] = 'contrato/index'; 

@@ -16,17 +16,34 @@ class Migration_pagamento extends CI_Migration {
                 'unsigned'       => TRUE,
                 'auto_increment' => TRUE
             ),
-            'CAMPO_1' => array(
-                'type' => 'VARCHAR',
-                'constraint' => 100,
+            'valor' => array(
+                'type' => 'DECIMAL',
+                'constraint' => '10,2',
             ),
-            'CAMPO_2' => array(
+            'vencimento' => array(
+                'type' => 'DATE',
+                'null'  => TRUE,
+            ),
+            'status' => array(
+   				       'type'       => 'ENUM("Emitido","Vencido","Pago")',
+            ),
+            'forma_pagamento' => array(
+   				       'type'       => 'ENUM("À vista","Boleto","Transferência","Pix","Outros")',
+                 'null'  => TRUE,
+            ),
+            'nota_fiscal' => array(
                 'type' => 'VARCHAR',
                 'constraint' => 100,
+                'null'  => TRUE,
+            ),
+            'contrato_id' => array(
+              'type' => 'INT',
+              'constraint' => 11,
+              'unsigned'       => TRUE,
             ),
             'dt_delete' => array(
-				'type'  => 'TIMESTAMP',
-                'null'  => TRUE    
+				        'type'  => 'TIMESTAMP',
+                'null'  => TRUE
             ),
             'deleted' => array(
                 'type' => 'BOOLEAN',

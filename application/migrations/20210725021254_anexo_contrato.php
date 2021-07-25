@@ -16,17 +16,18 @@ class Migration_anexo_contrato extends CI_Migration {
                 'unsigned'       => TRUE,
                 'auto_increment' => TRUE
             ),
-            'CAMPO_1' => array(
+            'anexo' => array(
                 'type' => 'VARCHAR',
                 'constraint' => 100,
             ),
-            'CAMPO_2' => array(
-                'type' => 'VARCHAR',
-                'constraint' => 100,
+            'contrato_id' => array(
+              'type' => 'INT',
+              'constraint' => 11,
+              'unsigned'       => TRUE,
             ),
             'dt_delete' => array(
-				'type'  => 'TIMESTAMP',
-                'null'  => TRUE    
+				        'type'  => 'TIMESTAMP',
+                'null'  => TRUE
             ),
             'deleted' => array(
                 'type' => 'BOOLEAN',
@@ -34,11 +35,11 @@ class Migration_anexo_contrato extends CI_Migration {
             )
         ));
         $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->create_table('anexo_contrato');
+        $this->dbforge->create_table('anexo');
     }
 
     public function down() {
-        $this->dbforge->drop_table('anexo_contrato');
+        $this->dbforge->drop_table('anexo');
     }
 
 }

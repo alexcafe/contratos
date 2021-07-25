@@ -54,4 +54,10 @@ function mascara_cpf_cnpj($str)
 		return $mascarado;
 	}
 }
+
+function valor_view($str)
+{
+  $valor = str_replace('.',',', $str);
+  return $valor;
+}
 }

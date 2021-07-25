@@ -9,36 +9,10 @@ Para saber mais sobre dbforge e migrations, ver:
 class Migration_constraints_contrato extends CI_Migration {
 
     public function up() {
-        $this->dbforge->add_field(array(
-            'id' => array(
-                'type' => 'INT',
-                'constraint' => 11,
-                'unsigned'       => TRUE,
-                'auto_increment' => TRUE
-            ),
-            'CAMPO_1' => array(
-                'type' => 'VARCHAR',
-                'constraint' => 100,
-            ),
-            'CAMPO_2' => array(
-                'type' => 'VARCHAR',
-                'constraint' => 100,
-            ),
-            'dt_delete' => array(
-				'type'  => 'TIMESTAMP',
-                'null'  => TRUE    
-            ),
-            'deleted' => array(
-                'type' => 'BOOLEAN',
-                'default' => FALSE,
-            )
-        ));
-        $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->create_table('constraints_contrato');
-    }
-
-    public function down() {
-        $this->dbforge->drop_table('constraints_contrato');
+        $this->db->query("ALTER TABLE contrato ADD CONSTRAINT fk_tipo_contrato_id FOREIGN KEY ( tipo_contrato_id ) REFERENCES tipo_contrato ( id )");
+        $this->db->query("ALTER TABLE contrato ADD CONSTRAINT fk_pessoa_contrato_id FOREIGN KEY ( pessoa_id ) REFERENCES pessoa ( id )");
+        $this->db->query("ALTER TABLE anexo ADD CONSTRAINT fk_anexo_contrato_id FOREIGN KEY ( contrato_id ) REFERENCES contrato ( id )");
+        $this->db->query("ALTER TABLE pagamento ADD CONSTRAINT fk_pagamento_contrato_id FOREIGN KEY ( contrato_id ) REFERENCES contrato ( id )");
     }
 
 }
