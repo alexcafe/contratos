@@ -15,4 +15,6 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/pages/auth.css">
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/images/favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendors/simple-datatables/style.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendors/apexcharts/apexcharts.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>

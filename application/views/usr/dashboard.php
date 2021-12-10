@@ -9,8 +9,8 @@
                 <!-- <h3>Profile Statistics</h3> -->
             </div>
             <div class="page-content">
-                <!-- <section class="row">
-                    <div class="col-12 col-lg-9">
+                <section class="row">
+                    <!-- <div class="col-12 col-lg-9">
                         <div class="row">
                             <div class="col-6 col-lg-3 col-md-6">
                                 <div class="card">
@@ -207,9 +207,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-lg-3">
-                        <div class="card">
+                    </div> -->
+                    <div class="col-12">
+                        <!-- <div class="card">
                             <div class="card-body py-4 px-5">
                                 <div class="d-flex align-items-center">
                                     <div class="avatar avatar-xl">
@@ -259,7 +259,7 @@
                                         Conversation</button>
                                 </div>
                             </div>
-                        </div>
+                        </div> 
                         <div class="card">
                             <div class="card-header">
                                 <h4>Visitors Profile</h4>
@@ -267,9 +267,16 @@
                             <div class="card-body">
                                 <div id="chart-visitors-profile"></div>
                             </div>
-                        </div>
+                        </div>-->
+                        <a href="">
+                            <div class="alert alert-primary btn-primary">
+                                <h4 class="alert-heading">Primary</h4>
+                                <p>This is a primary alert.</p>
+                            </div>
+                        </a>
+
                     </div>
-                </section> -->
+                </section>
             </div>
 
             <footer>

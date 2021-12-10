@@ -48,4 +48,10 @@ $(document).ready(function() {
   {
     $('#cpf_cnpj').addClass('is-invalid');
   }
+
+  var sg = $('.slg p').text();
+  if(sg == 'Abreviação/Sigla já cadastrada!')
+  {
+    $('#sigla').addClass('is-invalid');
+  }
 });

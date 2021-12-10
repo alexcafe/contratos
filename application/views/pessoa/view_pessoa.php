@@ -30,7 +30,7 @@
                 <section class="section">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title"><?php echo $pessoa->nome;?></h4>
+                            <h4 class="card-title"><?php echo "{$pessoa->nome} ({$pessoa->sigla})";?></h4>
                         </div>
                         <div class="card-body">
                             <p><strong>CPF/CNPJ:</strong> <?php echo $pessoa->cpf_cnpj;?></p>

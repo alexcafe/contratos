@@ -521,3 +521,6 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+//Definição de horário da região
+$config['hora_brasilia'] = 'America/Sao_Paulo';

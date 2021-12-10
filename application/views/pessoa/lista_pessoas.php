@@ -8,8 +8,8 @@
             <div class="page-heading">
                 <div class="page-title">
                     <div class="row">
-                        <?php if($this->session->flashdata('message_success_pessoa')): ?>
-                            <div class="alert alert-success alert-dismissible show fade"><?php echo $this->session->flashdata('message_success_pessoa'); ?>
+                        <?php if($this->session->flashdata('message_success_contrato')): ?>
+                            <div class="alert alert-success alert-dismissible show fade"><?php echo $this->session->flashdata('message_success_contrato'); ?>
                                 <button type="button" class="btn-close" data-bs-dismiss="alert"
                                     aria-label="Close"></button>
                             </div>

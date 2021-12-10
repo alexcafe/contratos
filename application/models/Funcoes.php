@@ -55,9 +55,38 @@ function mascara_cpf_cnpj($str)
 	}
 }
 
+//Ver valor monetário com casa decimal separada de ponto para vírgula
 function valor_view($str)
 {
   $valor = str_replace('.',',', $str);
   return $valor;
+}
+
+//Ver valor monetário com casa decimal separada de vírgula para ponto
+function valor_sql($str)
+{
+	$valor = str_replace('.','', $str);
+  $valor = preg_replace('/,(\d{2})$/', '.$1', $valor);
+	
+  return $valor;
+}
+
+function valor_monetario($str)
+{
+	$valor = number_format($str, 2, ',', '.');
+	return $valor;
+}
+
+function date_sql_to_view($date)
+{
+	if($date)
+	{
+		$date = date("d/m/Y", strtotime($date));
+	}
+	else
+	{
+		$date = NULL;
+	}
+	return $date;
 }
 }

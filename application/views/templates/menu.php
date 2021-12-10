@@ -30,10 +30,18 @@
                                 <span>Gerenciar Pessoas</span>
                             </a>
                         </li>
+
                         <li class="sidebar-item <?php echo $this->uri->segment(1)=='contratos' ? 'active' : ''; ?>">
                             <a href="<?php echo base_url(); ?>contratos" class="sidebar-link" >
-                                <i class="bi bi-people-fill"></i>
+                                <i class="bi bi-file-text"></i>
                                 <span>Gerenciar Contratos</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item <?php echo $this->uri->segment(1)=='pagamentos' ? 'active' : ''; ?>">
+                            <a href="<?php echo base_url(); ?>pagamentos" class="sidebar-link" >
+                                <i class="bi bi-cash"></i>
+                                <span>Gerenciar Pagamentos</span>
                             </a>
                         </li>
                         <hr/>

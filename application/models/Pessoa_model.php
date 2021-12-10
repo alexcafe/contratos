@@ -14,6 +14,7 @@ class Pessoa_model extends CI_Model {
     $this->db->select("
                       id,
                       nome,
+                      sigla,
                       cpf_cnpj,
                       CASE WHEN tipo_pessoa = 'f' THEN 'Pessoa Física'
                       ELSE 'Pessoa Jurídica' END AS tipo_pessoa,
@@ -42,23 +43,23 @@ class Pessoa_model extends CI_Model {
 
   public function set_pessoa($acao)
   {
-    //$this->input->post('autor_defesa')
     $data = array(
-      'nome' => $this->input->post('nome'),
-      'cpf_cnpj' => $this->funcoes->limpa_numero($this->input->post('cpf_cnpj')),
-      'tipo_pessoa' => $this->input->post('tipo_pessoa'),
-      'ie' => $this->input->post('ie'),
-      'logradouro' => $this->input->post('logradouro'),
-      'numero' => $this->input->post('numero'),
-      'complemento' => $this->input->post('complemento'),
-      'bairro' => $this->input->post('bairro'),
-      'cep' => $this->funcoes->limpa_numero($this->input->post('cep')),
-      'cidade' => $this->input->post('cidade'),
-      'estado' => $this->input->post('estado'),
-      'telefone' => $this->input->post('telefone') ? $this->funcoes->limpa_numero($this->input->post('telefone')) : NULL,
-      'celular' => $this->funcoes->limpa_numero($this->input->post('celular')),
-      'email' => $this->input->post('email'),
-      'responsavel' => $this->input->post('responsavel'),
+      'nome' => addslashes($this->input->post('nome')),
+      'sigla' => addslashes($this->input->post('sigla')),
+      'cpf_cnpj' => $this->funcoes->limpa_numero(addslashes($this->input->post('cpf_cnpj'))),
+      'tipo_pessoa' => addslashes($this->input->post('tipo_pessoa')),
+      'ie' => addslashes($this->input->post('ie')),
+      'logradouro' => addslashes($this->input->post('logradouro')),
+      'numero' => addslashes($this->input->post('numero')),
+      'complemento' => addslashes($this->input->post('complemento')),
+      'bairro' => addslashes($this->input->post('bairro')),
+      'cep' => $this->funcoes->limpa_numero(addslashes($this->input->post('cep'))),
+      'cidade' => addslashes($this->input->post('cidade')),
+      'estado' => addslashes($this->input->post('estado')),
+      'telefone' => $this->input->post('telefone') ? $this->funcoes->limpa_numero(addslashes($this->input->post('telefone'))) : NULL,
+      'celular' => $this->funcoes->limpa_numero(addslashes($this->input->post('celular'))),
+      'email' => addslashes($this->input->post('email')),
+      'responsavel' => addslashes($this->input->post('responsavel')),
     );
 
     if($acao == 'create')
@@ -68,6 +69,7 @@ class Pessoa_model extends CI_Model {
     else
     {
       unset($data['cpf_cnpj']);
+      unset($data['sigla']);
       $this->db->where('id', $this->input->post('pessoa_id'));
       $this->db->update('pessoa',$data);
     }
@@ -89,6 +91,22 @@ class Pessoa_model extends CI_Model {
     $this->db->select('count(*) as linhas')
     ->from('pessoa')
     ->where('cpf_cnpj',$cpf_cnpj);
+    $query = $this->db->get();
+    if ($query->row()->linhas == 0)
+    $return = false;
+    else
+    {
+      $return = true;
+    }
+    //echo var_dump($this->db->last_query());
+    return $return;
+  }
+
+  public function have_sigla($sigla)
+  {
+    $this->db->select('count(*) as linhas')
+    ->from('pessoa')
+    ->where('sigla',$sigla);
     $query = $this->db->get();
     if ($query->row()->linhas == 0)
     $return = false;

@@ -74,23 +74,34 @@ class Auth extends CI_Controller
 
 		if ($this->form_validation->run() === TRUE)
 		{
-			// check to see if the user is logging in
-			// check for "remember me"
-			$remember = (bool)$this->input->post('remember');
+			$secret = '6LdKsrMbAAAAACbbYvb70hfDAcxjRaxHcUA_3KLm';
+			$verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
+			$responseData = json_decode($verifyResponse);
+			if($responseData->success)
+  		{
+				// check to see if the user is logging in
+				// check for "remember me"
+				$remember = (bool)$this->input->post('remember');
 
-			if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember))
-			{
-				//if the login is successful
-				//redirect them back to the home page
-				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				redirect('principal', 'refresh');
+				if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember))
+				{
+					//if the login is successful
+					//redirect them back to the home page
+					$this->session->set_flashdata('message', $this->ion_auth->messages());
+					redirect('principal', 'refresh');
+				}
+				else
+				{
+					// if the login was un-successful
+					// redirect them back to the login page
+					$this->session->set_flashdata('message', $this->ion_auth->errors());
+					redirect('login', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
+				}
 			}
 			else
 			{
-				// if the login was un-successful
-				// redirect them back to the login page
-				$this->session->set_flashdata('message', $this->ion_auth->errors());
-				redirect('login', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
+				$this->session->set_flashdata('message', "A verificação do recaptcha falhou. Tente novamente.");
+				redirect('login', 'refresh');
 			}
 		}
 		else

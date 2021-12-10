@@ -36,6 +36,7 @@
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
+                                        <th>Código</th>
                                         <th>Escopo</th>
                                         <th>Cliente</th>
                                         <th>Ações</th>
@@ -44,16 +45,17 @@
                                 <tbody>
                                   <?php foreach($contratos as $contrato): ?>
                                     <tr>
-                                        <td><?php echo $contrato->escopo ?></td>
-                                        <td><?php echo $contrato->nome_pessoa ?></td>
+                                        <td><?php echo $contrato->codigo; ?></td>
+                                        <td><?php echo $contrato->escopo; ?></td>
+                                        <td><?php echo $contrato->nome_pessoa; ?></td>
                                         <td>
-                                            <a type="button" href="<?php //echo site_url('/pessoas/visualizar/'. $pessoa->id);?>">
+                                            <a type="button" href="<?php echo site_url('/contratos/visualizar/'. $contrato->id);?>">
                                                 <span class="badge bg-primary">Visualizar</span>
                                             </a>
-                                            <a type="button" href="<?php //echo site_url('/pessoas/editar/'. $pessoa->id);?>">
+                                            <a type="button" href="<?php echo site_url('/contratos/editar/'. $contrato->id);?>">
                                                 <span class="badge bg-warning">Editar</span>
                                             </a>
-                                            <a data-bs-toggle="modal" data-bs-target="#danger" type="button" data-bs-whatever="<?php //echo site_url('/pessoas/excluir/'. $pessoa->id);?>">
+                                            <a data-bs-toggle="modal" data-bs-target="#danger" type="button" data-bs-whatever="<?php echo site_url('/contratos/excluir/'. $contrato->id);?>">
                                                 <span class="badge bg-danger">Excluir</span>
                                             </a>
                                         </td>
@@ -63,7 +65,7 @@
                                 </tbody>
                             </table>
                             <div class="buttons" style="float:right;">
-                                <a href="<?php //echo base_url() . "contrato/novo"; ?>" class="btn btn-primary">Novo Cadastro</a>
+                                <a href="<?php echo base_url() . "contratos/novo"; ?>" class="btn btn-primary">Novo Cadastro</a>
                             </div>
                         </div>
 

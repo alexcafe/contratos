@@ -779,7 +779,7 @@
 						}), e.appendChild(s)
 					}
 					t.data && t.data.length && (s = createElement("tbody"), t.data.forEach(e => {
-						if (t.headings && t.headings.length !== e.length) throw new Error("O número de linhas não corresponde ao número de títulos.");
+						if (t.headings && t.headings.length !== e.length) throw new Error("The number of rows do not match the number of headings.");
 						const a = createElement("tr");
 						e.forEach(t => {
 							const e = createElement("td", {
@@ -812,10 +812,10 @@
 					header: !0,
 					footer: !1,
 					labels: {
-						placeholder: "Pesquisar por...",
+						placeholder: "Pesquisar...",
 						perPage: "{select}",
-						noRows: "Nenhum registro encontrada",
-						info: "Exibindo {start} a {end} de {rows} registro(s)"
+						noRows: "Não há registros",
+						info: "Exibindo {start} a {end} de {rows} registros"
 					},
 					layout: {
 						top: "{select}{search}",
@@ -901,7 +901,7 @@
 							class: "dataTable-wrapper dataTable-loading"
 						}), s += "<div class='dataTable-top'>", s += e.layout.top, s += "</div>", e.scrollY.length ? s += `<div class='dataTable-container' style='height: ${e.scrollY}; overflow-Y: auto;'></div>` : s += "<div class='dataTable-container'></div>", s += "<div class='dataTable-bottom'>", s += e.layout.bottom, s = (s += "</div>").replace("{info}", e.paging ? "<div class='dataTable-info'></div>" : ""), e.paging && e.perPageSelect) {
 						let t = "<div class='dataTable-dropdown'>";
-						t += e.labels.perPage, t += "<label>registro(s) por página</label></div>";
+						t += e.labels.perPage, t += "<label>registros por página</label></div>";
 						const a = createElement("select", {
 							class: "dataTable-selector form-select"
 						});

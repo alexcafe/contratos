@@ -43,12 +43,20 @@
                             <h4 class="card-title" style="padding-bottom:10px">Identificação</h4>
                           </div>
                           <div class="row">
-                              <div class="col-12 form-group">
+                              <div class="col-sm-8 form-group">
                                   <label class="form-label" for="name">Nome</label>
                                   <input type="text" id="nome" class="form-control" maxlength="400" name="nome" placeholder="Digite o nome da pessoa..." value="<?php echo set_value('nome'); ?>" required>
                                   <div class="invalid-feedback">
                                       <i class="bx bx-radio-circle"></i>
                                       Por favor, preencha o campo nome.
+                                  </div>
+                              </div>
+                              <div class="col-sm-4 form-group">
+                                  <label class="form-label" for="sigla">Abreviação/Sigla</label>
+                                  <input type="text" id="sigla" class="form-control" maxlength="7" name="sigla" placeholder="Digite uma sigla para pessoa..." value="<?php echo set_value('sigla'); ?>" required>
+                                  <div class="invalid-feedback slg">
+                                      <i class="bx bx-radio-circle"></i>
+                                      <?php echo form_error('sigla') ? form_error('sigla') : 'Por favor, preencha o campo abreviação/sigla.';?>
                                   </div>
                               </div>
                           </div>

@@ -34,6 +34,9 @@
                               Mantenha-me conectado
                             </label>
                         </div>
+                        <div style="text-align:center; padding-top:30px">
+                            <div class="g-recaptcha" style="display: inline-block;" data-sitekey="6LdKsrMbAAAAAKnSwBgY0bqNHlETNTFiLML8tcxy"></div>
+                        </div>
                         <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Entrar</button>
                       <?php echo form_close();?>
                     <!-- <div class="text-center mt-5 text-lg fs-4">

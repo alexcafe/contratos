@@ -46,6 +46,7 @@ class Pessoa extends CI_Controller
     if ($this->ion_auth->logged_in())
     {
       $this->form_validation->set_rules('cpf_cnpj', 'CPF/CNPJ', 'callback_validar_cpf_cnpj');
+      $this->form_validation->set_rules('sigla', 'Abreviação/Sigla', 'callback_validar_sigla');
       if ( ! $this->form_validation->run())
       {
         // $data = $this->security->xss_clean($data);
@@ -87,6 +88,22 @@ class Pessoa extends CI_Controller
     }
     return $return;
 
+  }
+
+  function validar_sigla()
+  {
+    $sigla = NULL;
+    $sigla = addslashes($this->input->post('sigla'));
+    if ($this->pessoa_model->have_sigla($sigla)) 
+    {
+      $this->form_validation->set_message('validar_sigla', 'Abreviação/Sigla já cadastrada!');
+      $return = FALSE;
+    }
+    else
+    {
+      $return = TRUE;
+    }
+    return $return;
   }
 
   function delete_pessoa($pessoa_id)
